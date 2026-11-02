@@ -1,3 +1,8 @@
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
+
+
 import flet as ft
 
 from model.model import DepositoStrumenti

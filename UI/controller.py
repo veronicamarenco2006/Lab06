@@ -28,4 +28,34 @@ class Controller:
         self._view.update()
 
     # Altre Funzioni Event Handler
-    # TODO
+    # gestisce l'evento del pulsante "Mostra"
+    def handler_mostra_strumenti(self, e):
+        print("Ricerca strumenti")
+        result = self._model.get_strumenti()
+        # evito duplicati
+        self._view.list_view_strumenti.controls.clear()
+        for strumento in result:
+            self._view.list_view_strumenti.controls.append(ft.Text(f"{strumento}"))
+
+        #aggiorno la pagina
+        self._view.page.update()
+
+    # gestisce l'evento del pulsante "Cerca"
+    def handler_cerca_strumenti(self, e):
+        print("Cerca strumenti")
+        tipo_strumento_cercato = self._view.controllo_strumento.value
+
+        # controllo che lo strumento cercato esista
+        if not tipo_strumento_cercato:
+            self._view.show_alert("Inserire uno strumento valido!")
+
+        result = self._model.cerca_strumenti_per_tipo(tipo_strumento_cercato)
+
+        # evito duplicato
+        self._view.list_view_cerca_strumenti.controls.clear()
+        for strumento in result:
+            self._view.list_view_cerca_strumenti.controls.append(ft.Text(f"{strumento}"))
+
+        # aggiorno la pagina
+        self._view.page.update()
+

@@ -1,6 +1,7 @@
 import flet as ft
 from UI.alert import AlertManager
 
+
 '''
     VIEW:
     - Rappresenta l'interfaccia utente
@@ -63,7 +64,16 @@ class View:
         pulsante_conferma_responsabile = ft.Button("Conferma", on_click=self.controller.conferma_responsabile)
 
         # Altri Pulsanti da implementare (es. "Mostra" e "Cerca")
-        # TODO
+        self.text_strumenti = ft.Text(value="Strumenti", weight=ft.FontWeight.BOLD)
+        btn_mostra_strumenti = ft.Button("Mostra", on_click = self.controller.handler_mostra_strumenti)
+
+        self.list_view_strumenti = ft.ListView()
+
+        self.text_cerca_strumenti = ft.Text(value="Cerca Strumento per Tipo", weight=ft.FontWeight.BOLD, text_align=ft.TextAlign.CENTER)
+        self.controllo_strumento = ft.TextField(label="Tipo")
+        btn_cerca_strumenti = ft.Button("Cerca", on_click= self.controller.handler_cerca_strumenti)
+        self.list_view_cerca_strumenti = ft.ListView()
+
 
         # --- LAYOUT ---
         self.page.add(
@@ -82,10 +92,16 @@ class View:
             ft.Divider(),
 
             # Sezione 3
-            # TODO
+            self.text_strumenti,
+            btn_mostra_strumenti,
+            self.list_view_strumenti,
+            ft.Divider(),
 
             # Sezione 4
-            # TODO
+            self.text_cerca_strumenti,
+            self.controllo_strumento,
+            btn_mostra_strumenti,
+            self.list_view_cerca_strumenti,
         )
 
     def cambia_tema(self, e):
